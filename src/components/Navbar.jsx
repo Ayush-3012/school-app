@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaHome } from "react-icons/fa";
+import { FaSchoolCircleCheck } from "react-icons/fa6";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Add School", href: "/addSchool" },
+    { name: "Home", href: "/", icon: <FaHome className="text-2xl"/> },
+    { name: "Add School", href: "/addSchool", icon: <FaSchoolCircleCheck className="text-2xl"/> },
   ];
 
   return (
@@ -26,10 +28,11 @@ export default function Navbar() {
               className={`${
                 pathname === link.href
                   ? "text-slate-950 font-semibold border-b-2 border-slate-900"
-                  : " hover:text-slate-900"
+                  : " hover:scale-110"
               } transition`}
             >
-              {link.name}
+              <span className="max-md:hidden">{link.name}</span>
+              <spna className="hidden max-md:block">{link.icon}</spna>
             </Link>
           ))}
         </div>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { addSchool } from "../../lib/client/services/schoolServices";
 import { useRouter } from "next/navigation";
@@ -142,12 +143,14 @@ const AddSchoolPage = () => {
         )}
 
         {/* Submit Button */}
-        <button
+        <motion.button
           type="submit"
-          className="w-full p-3 bg-purple-600 hover:bg-purple-800 hover:scale-x-105 transition text-white font-bold rounded-lg shadow-md"
+          className="w-full p-3 bg-purple-600 hover:bg-purple-800 text-white font-bold rounded-lg shadow-md cursor-pointer"
+          whileHover={{scale: 1.05}}
+          transition={{ duration: 0.6, type: "spring", bounce: 0.6 }}
         >
           Add School
-        </button>
+        </motion.button>
       </form>
     </div>
   );

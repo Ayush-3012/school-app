@@ -3,6 +3,7 @@
 import { FaCity, FaSchool } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const SchoolSingleCard = ({ school }) => {
   return (
@@ -14,8 +15,11 @@ const SchoolSingleCard = ({ school }) => {
         transition={{ duration: 0.3, type: "spring", bounce: 0.6 }}
       >
         <div className="flex relative  justify-center group-hover:scale-[1.025] duration-200">
-          <img
+          <Image
             src={school?.image}
+            alt="School Image"
+            width={100}
+            height={100}
             className="rounded-xl w-64 h-80 shadow-[1px_1px_10px] shadow-black group-hover:scale-[1.05] duration-200"
           />
         </div>
