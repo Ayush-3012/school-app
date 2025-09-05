@@ -9,10 +9,10 @@ const SchoolSingleCard = ({ school }) => {
   return (
     <>
       <motion.div
-        className="shadow-[1px_1px_20px] flex flex-col justify-center items-center bg-rose-200 shadow-black rounded-lg p-4 relative group hover:-translate-y-1.5 duration-150"
+        className="shadow-[1px_1px_20px] flex flex-col justify-center items-center bg-rose-200 shadow-black rounded-lg p-4 relative group hover:-translate-y-1.5"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 0.3, type: "spring", bounce: 0.6 }}
+        transition={{ duration: 0.6, type: "spring", bounce: 0.6 }}
       >
         <div className="flex relative  justify-center group-hover:scale-[1.025] duration-200">
           <Image

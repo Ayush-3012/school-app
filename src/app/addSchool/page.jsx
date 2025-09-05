@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
 import { addSchool } from "../../lib/client/services/schoolServices";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const AddSchoolPage = () => {
   const {
@@ -17,9 +18,11 @@ const AddSchoolPage = () => {
   } = useForm();
 
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
         if (key === "image") {
@@ -31,11 +34,14 @@ const AddSchoolPage = () => {
 
       await addSchool(formData);
       toast.success("School added successfully 🎉");
+      setLoading(false);
       reset();
       router.push("/");
     } catch (error) {
       console.error(error);
       toast.error("Error adding school ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -146,10 +152,10 @@ const AddSchoolPage = () => {
         <motion.button
           type="submit"
           className="w-full p-3 bg-purple-600 hover:bg-purple-800 text-white font-bold rounded-lg shadow-md cursor-pointer"
-          whileHover={{scale: 1.05}}
+          whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.6, type: "spring", bounce: 0.6 }}
         >
-          Add School
+          {loading ? "Adding School" : "Add School"}
         </motion.button>
       </form>
     </div>
