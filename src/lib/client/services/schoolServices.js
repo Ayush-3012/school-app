@@ -1,6 +1,6 @@
 import axios from "axios";
-// const NEXT_DEPLOYED_URL = process.env.NEXT_PUBLIC_API_URL
-const NEXT_DEPLOYED_URL = "http://localhost:3000/";
+const NEXT_DEPLOYED_URL = process.env.NEXT_PUBLIC_API_URL;
+// const NEXT_DEPLOYED_URL = "http://localhost:3000/";
 
 export const addSchool = async (schoolData) => {
   try {
