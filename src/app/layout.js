@@ -10,6 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/logo.png" />
+      </head>
       <body suppressHydrationWarning>
         <Navbar />
         <main className="pt-4">{children}</main>
