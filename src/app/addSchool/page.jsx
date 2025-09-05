@@ -62,6 +62,8 @@ const AddSchoolPage = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
+        method="post"
+        encType="multipart/form-data"
         className="max-w-4xl mx-auto space-y-3"
       >
         {/* School Name */}

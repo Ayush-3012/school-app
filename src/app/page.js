@@ -1,23 +1,11 @@
-"use client";
+export const dynamic = "force-dynamic"; 
+export const runtime = "nodejs";
 
-import { useEffect, useState } from "react";
 import SchoolSingleCard from "../components/SchoolSingleCard";
 import { getSchool } from "../lib/server/services/getSchool";
 
-export default function Home() {
-  const [allSchools, setAllSchools] = useState([]);
-  useEffect(() => {
-    const fetchAllSchools = async () => {
-      try {
-        const res = await getSchool();
-        setAllSchools(res);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchAllSchools();
-  }, []);
+export default async function Home() {
+  const allSchools = await getSchool();
 
   return (
     <main className="min-h-screen bg-gradient-to-tl from-sky-200 via-purple-300 to-indigo-400 pt-6 pb-10">
