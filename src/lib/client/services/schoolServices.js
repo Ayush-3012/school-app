@@ -1,8 +1,9 @@
 import axios from "axios";
+const BASE_URL = 'https://school-app-ivory-seven.vercel.app/'
 
 export const addSchool = async (schoolData) => {
   try {
-    const response = await axios.post("/api/add", schoolData);
+    const response = await axios.post(`${BASE_URL}/api/add`, schoolData);
     return response.data;
   } catch (error) {
     console.error("Error adding school:", error);
@@ -12,7 +13,7 @@ export const addSchool = async (schoolData) => {
 
 export const getAllSchools = async () => {
   try {
-    const response = await axios.get("/api/get");
+    const response = await axios.get(`${BASE_URL}/api/get`);
     return response.data;
   } catch (error) {
     console.error("Error fetching schools:", error);
@@ -22,7 +23,7 @@ export const getAllSchools = async () => {
 
 export const getSchoolById = async (id) => {
   try {
-    const response = await axios.get(`/api/get/${id}`);
+    const response = await axios.get(`${BASE_URL}/api/get/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching school:", error);
