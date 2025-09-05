@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { addSchool } from "../../../lib/server/services/addSchool.js";
+import cloudinary from "../../../lib/cloudinary.js";
 
 export async function POST(req) {
   try {
@@ -15,22 +14,19 @@ export async function POST(req) {
     const file = formData.get("image");
 
     let imageUrl = null;
+
     if (file) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const uploadDir = path.join(process.cwd(), "public", "schoolImages");
+      const base64String = buffer.toString("base64");
+      const dataURI = `data:${file.type};base64,${base64String}`;
 
-      if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir, { recursive: true });
-      }
+      const uploadRes = await cloudinary.uploader.upload(dataURI, {
+        folder: "schoolImages",
+      });
 
-      const fileName = `${Date.now()}-${file.name}`;
-      const filePath = path.join(uploadDir, fileName);
-
-      fs.writeFileSync(filePath, buffer);
-
-      imageUrl = `/schoolImages/${fileName}`;
+      imageUrl = uploadRes.secure_url;
     }
 
     const newSchool = await addSchool({
