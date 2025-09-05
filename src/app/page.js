@@ -1,14 +1,31 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import SchoolSingleCard from "../components/SchoolSingleCard";
 import { getSchool } from "../lib/server/services/getSchool";
 
-export default async function Home() {
-  const allSchools = await getSchool();
+export default function Home() {
+  const [allSchools, setAllSchools] = useState([]);
+  useEffect(() => {
+    const fetchAllSchools = async () => {
+      try {
+        const res = await getSchool();
+        setAllSchools(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchAllSchools();
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-tl from-sky-200 via-purple-300 to-indigo-400 pt-6 pb-10">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-gray-900 underline">🏫 All Schools</h1>
+        <h1 className="text-3xl font-bold text-gray-900 underline">
+          🏫 All Schools
+        </h1>
         <p className="text-gray-800 mt-2">
           Browse through the list of registered schools
         </p>
